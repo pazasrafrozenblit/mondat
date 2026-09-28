@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "IBKR Option Chain Enhancer",
+  "version": "1.1",
+  "description": "Adds EY Score (Expected Yield), fixes overlay bounds on IBKR option chain, and a close-worthiness panel for open short options",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.interactivebrokers.co.uk/*",
+        "https://www.interactivebrokers.com/*",
+        "https://ndcdyn.interactivebrokers.com/*",
+        "https://gdcdyn.interactivebrokers.com/*"
+      ],
+      "js": ["content.js", "close-worthiness.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
