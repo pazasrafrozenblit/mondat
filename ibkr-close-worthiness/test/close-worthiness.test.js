@@ -1,4 +1,4 @@
-// Run: node --test ibkr-extension/test
+// Run: node --test ibkr-close-worthiness/test/close-worthiness.test.js
 const test = require('node:test');
 const assert = require('node:assert');
 const { closeWorthiness, nyDateTime } = require('../close-worthiness.js');

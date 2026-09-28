@@ -1,6 +1,7 @@
-// IBKR Option Chain Enhancer - close-worthiness.js
+// IBKR Close Worthiness - close-worthiness.js
 // Panel: is it worth buying back a winning short option before expiry? (case A)
-// Version 1.1
+// Self-contained: runs as its own extension or dropped into IBKR Option Chain Enhancer.
+// Version 1.0
 
 (function() {
   'use strict';

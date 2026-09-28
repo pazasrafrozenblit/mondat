@@ -1,11 +1,8 @@
-# IBKR Option Chain Enhancer
+# IBKR Close Worthiness
 
-תוסף Chrome לדפים של IBKR:
+פאנל בדפים של IBKR שמראה אם כדאי לקנות חזרה אופציה שמכרת והיא ברווח, לפני הפקיעה (מקרה א').
 
-- **EY Score** (`content.js`): תווית של Ann. Yield × PoP על שרשרת האופציות.
-- **כדאיות סגירה** (`close-worthiness.js`, חדש בגרסה 1.1): פאנל שמראה אם כדאי לקנות חזרה אופציה שמכרת והיא ברווח, לפני הפקיעה.
-
-## הנוסחה (מקרה א': פוזיציה ברווח)
+## הנוסחה
 
 להחזיק עד הפקיעה זה כמו למכור את האופציה מחדש עכשיו, במחיר הנוכחי.
 
@@ -23,6 +20,23 @@
 
 הזמן נמדד בימים קלנדריים עד 16:00 שעון ניו יורק ביום הפקיעה. העמלה שמוגדרת מראש היא 0.02$ למניה, בערך 1$ לחוזה לסגירה ועוד 1$ לפתיחה מחדש. אפשר לשנות אותה בהגדרות.
 
+## התקנה
+
+**אפשרות 1: תוסף נפרד (מומלץ).** לא נוגע ב-IBKR Option Chain Enhancer.
+
+1. נכנסים ל-`chrome://extensions` ומפעילים Developer mode.
+2. לוחצים **Load unpacked** ובוחרים את התיקייה הזאת.
+
+**אפשרות 2: בתוך IBKR Option Chain Enhancer.**
+
+1. מעתיקים את `close-worthiness.js` לתיקייה של התוסף, ליד הקבצים הקיימים. אל תחליף שום קובץ שכבר קיים שם.
+2. ב-`manifest.json` של התוסף מוסיפים שני דברים:
+   - לרשימת `"js"` ב-`content_scripts` של דפי IBKR: `"close-worthiness.js"`.
+   - אם אין שם `"permissions": ["storage"]`, מוסיפים את `"storage"` לרשימה.
+3. ב-`chrome://extensions` לוחצים **Reload**.
+
+הקובץ עצמאי. יש לו מזהים, סגנונות (בתוך Shadow DOM) ומפתחות אחסון משלו (`cw_positions`, `cw_settings`), ולכן הוא לא מתנגש בקוד הקיים.
+
 ## שימוש
 
 1. בכל דף של IBKR יש כפתור **⚖ כדאיות סגירה** בפינה השמאלית התחתונה.
@@ -31,13 +45,8 @@
 
 הפוזיציות נשמרות רק במחשב שלך, ב-`chrome.storage.local`.
 
-## התקנה או עדכון
-
-1. מעתיקים את `manifest.json`, `content.js` ו-`close-worthiness.js` לתיקייה שממנה התוסף נטען.
-2. נכנסים ל-`chrome://extensions` ולוחצים **Reload** על התוסף.
-
 ## בדיקות
 
 ```
-node --test ibkr-extension/test/close-worthiness.test.js
+node --test ibkr-close-worthiness/test/close-worthiness.test.js
 ```
