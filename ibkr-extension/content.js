@@ -91,7 +91,7 @@
         const s = pair.score >= 100 ? pair.score.toFixed(0) : pair.score.toFixed(1);
         const badge = document.createElement('div');
         badge.style.cssText = `position:absolute;left:${pair.left}px;top:${pair.top+13}px;width:${pair.width}px;height:12px;font-size:8.5px;font-weight:800;color:white;background:hsla(${hue},70%,30%,0.92);display:flex;align-items:center;justify-content:center;pointer-events:none;border-radius:2px;border:1px solid ${isBest?'gold':'transparent'};letter-spacing:-0.2px`;
-        badge.textContent = isBest ? `★ EY: ${s}%` : `EY: ${s}%`;
+        badge.textContent = isBest ? `\u2605 EY: ${s}%` : `EY: ${s}%`;
         badge.title = `Expected Yield = Ann.Yield x PoP = ${pair.value.toFixed(1)}% x ${pair.pop}% = ${pair.score.toFixed(1)}%`;
         sOvr.appendChild(badge);
       });
